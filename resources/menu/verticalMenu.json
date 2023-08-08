@@ -1,0 +1,46 @@
+{
+  "menu": [
+    {
+      "url": "/",
+      "name": "Dashboard",
+      "icon": "menu-icon tf-icons bx bx-home-circle",
+      "slug": "dashboard-analytics"
+    },
+    {
+      "name": "Client Management",
+      "icon": "menu-icon tf-icons bx bxs-group",
+      "slug": "clients",
+      "submenu": [
+        {
+          "url": "/clients/create",
+          "name": "Add Client",
+          "slug": "add-client"
+        },
+        {
+          "url": "/clients",
+          "name": "View Clients",
+          "slug": "clients"
+        }
+      ]
+    },
+    {
+      "name": "User Management",
+      "icon": "menu-icon tf-icons bx bxs-user",
+      "slug": "user-management",
+      "submenu": [
+        {
+          "url": "/users",
+          "name": "Users",
+          "slug": "users"
+        }
+      ]
+    },
+    {
+      "url": "/change-password",
+      "name": "Change You Password",
+      "icon": "menu-icon tf-icons bx bxs-lock-alt",
+      "slug": "dashboard-analytics"
+    }
+
+  ]
+}
