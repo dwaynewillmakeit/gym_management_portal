@@ -3,11 +3,12 @@
     <div class="card-body">
       <div>
 
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Search Client" aria-label="Search Client"
-                 aria-describedby="search-button" wire:model.debounce.500ms="clientName">
-          <button class="btn btn-outline-primary" type="button" id="search-button" >Search</button>
-        </div>
+        @can('view clients')
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search Client" aria-label="Search Client"
+                   aria-describedby="search-button" wire:model.debounce.500ms="clientName">
+            <button class="btn btn-outline-primary" type="button" id="search-button">Search</button>
+          </div>
       </div>
       <div class="table-responsive text-nowrap">
 
@@ -48,7 +49,6 @@
                 <a href="{{route('clients.edit',['client'=>$client->id])}}" class="btn btn-icon btn-warning">
                   <span class="tf-icons bx bx-edit"></span>
                 </a>
-                {{--          {{$client}}--}}
               </td>
             </tr>
           @endforeach
@@ -57,6 +57,9 @@
       </div>
     </div>
     {{ $clients->links() }}
+    @else
+      <h4 class="text-center text-secondary">You done have permission to view Clients' records</h4>
+    @endcan
   </div>
 
 

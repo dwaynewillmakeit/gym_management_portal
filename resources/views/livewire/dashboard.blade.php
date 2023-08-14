@@ -42,6 +42,7 @@
 
                           </div>
                         </div>
+                        @can('view payment records')
                         <div class="col card me-2">
                           <div class="d-flex justify-content-between align-items-center m-3">
                             <div class="d-flex flex-column align-items-center gap-1">
@@ -62,6 +63,8 @@
 
                           </div>
                         </div>
+                        @endcan
+
                       </div>
 
                       @livewire('payment.all')

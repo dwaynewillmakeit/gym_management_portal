@@ -8,6 +8,7 @@ use Illuminate\Validation\Rules\Password;
 use Livewire\Component;
 use Illuminate\Validation\Rules;
 use Livewire\WithPagination;
+use Spatie\Permission\Models\Role;
 
 class All extends Component
 {
@@ -25,6 +26,8 @@ class All extends Component
 
   public string $password;
 
+  public array $assignedRoles = [];
+
   public function mount(User $user): void
   {
     $this->user = $user;
@@ -36,7 +39,9 @@ class All extends Component
       ->orderBy('name')
       ->paginate(10);
 
-    return view('livewire.user.all', ['users' => $users])->extends("layouts.app");
+    $roles = Role::orderBy('name')->get();
+
+    return view('livewire.user.all', ['users' => $users, 'roles' => $roles])->extends("layouts.app");
   }
 
 
@@ -52,7 +57,7 @@ class All extends Component
       $this->user->password = Hash::make($this->password);
     }
 
-    if($this->isEditMode){
+    if ($this->isEditMode) {
       $this->validate();
       $this->user->is_active = $this->isAccountActive == 'active' ? true : false;
       $message = 'User updated';
@@ -61,6 +66,16 @@ class All extends Component
     $this->user->save();
 
     session()->flash("success", $message);
+
+    return redirect()->route('users.all');
+  }
+
+  public function assignRolesToUser()
+  {
+
+    $this->user->syncRoles($this->assignedRoles);
+
+    session()->flash("success", "Record Saved");
 
     return redirect()->route('users.all');
   }
@@ -75,7 +90,18 @@ class All extends Component
       $this->isAccountActive = $user->is_active ? 'active' : 'disable';
     }
 
-//    dd($this->isEditMode);
+  }
+
+  public function openRolesModal(User $user): void
+  {
+    $this->user = $user;
+
+    $this->assignedRoles = [];
+    foreach ($this->user->getRoleNames() as $role) {
+
+      $this->assignedRoles[] = $role;
+    }
+
   }
 
 

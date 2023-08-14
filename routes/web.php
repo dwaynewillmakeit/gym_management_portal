@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
 
 
   Route::get('users', \App\Http\Livewire\User\All::class)->name('users.all');
+  Route::get('roles', \App\Http\Livewire\Role\All::class)->name('roles.all');
 
 
   Route::get('change-password', ChangePassword::class)->name('change-password');

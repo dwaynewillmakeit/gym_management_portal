@@ -32,6 +32,11 @@
           "url": "/users",
           "name": "Users",
           "slug": "users"
+        },
+        {
+          "url": "/roles",
+          "name": "Roles",
+          "slug": "roles"
         }
       ]
     },

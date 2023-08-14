@@ -15,8 +15,6 @@ class Show extends Component
   public function mount(Client $client){
 
     $this->client = $client;
-
-
   }
 
 
